@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Etudiant</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+    <div class="container card m-2 rounded-3 border-2 shadow-sm  p-3">
+        <h2 class="card-title text-center">Add Etudiant</h2>
+        <form th:action="@{/etudiants/ajouter}" th:object="${etudiant}" method="post" class="card-body mt-3">
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" class="form-control" id="nom" th:field="*{nom}" required/>
+                <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom:</label>
+                <input type="text" class="form-control" id="prenom" th:field="*{prenom}" required/>
+                <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="cne">CNE:</label>
+                <input type="text" class="form-control" id="cne" th:field="*{cne}" required/>
+                <span th:if="${#fields.hasErrors('cne')}" th:errors="*{cne}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="dateNaissance">Date de Naissance:</label>
+                <input type="date" class="form-control" id="dateNaissance" th:field="*{dateNaissance}" name="dateNaissance" required/>
+                <span th:if="${#fields.hasErrors('dateNaissance')}" th:errors="*{dateNaissance}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="identifiant">Identifiant Massar:</label>
+                <input type="text" class="form-control" id="identifiant" th:field="*{identifiant}" required/>
+                <span th:if="${#fields.hasErrors('identifiant')}" th:errors="*{identifiant}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}" required/>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone:</label>
+                <input type="text" class="form-control" id="telephone" th:field="*{telephone}" required/>
+                <span th:if="${#fields.hasErrors('telephone')}" errors="*{telephone}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="nomArabe">Nom en Arabe:</label>
+                <input type="text" class="form-control" id="nomArabe" th:field="*{nomArabe}"/>
+                <span th:if="${#fields.hasErrors('nomArabe')}" th:errors="*{nomArabe}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="prenomArabe">Prénom en Arabe:</label>
+                <input type="text" class="form-control" id="prenomArabe" th:field="*{prenomArabe}"/>
+                <span th:if="${#fields.hasErrors('prenomArabe')}" th:errors="*{prenomArabe}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="text" class="form-control" id="photo" th:field="*{photo}"/>
+                <span th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary rounded-5 mt-3"><i class="fas fa-plus"></i> Add Etudiant</button>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>
+

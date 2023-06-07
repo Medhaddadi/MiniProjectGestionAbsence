@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Role Details</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+    <div class="container">
+        <h1>Role Details</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <td th:text="${role.idRole}"></td>
+            </tr>
+            <tr>
+                <th>Role Name</th>
+                <td th:text="${role.nomRole}"></td>
+            </tr>
+            <tr>
+                <th>Created At</th>
+                <td th:text="${role.createdAt}"></td>
+            </tr>
+            <tr>
+                <th>Updated At</th>
+                <td th:text="${role.updatedAt}"></td>
+            </tr>
+            <tr>
+                <th>Deleted At</th>
+                <td th:text="${role.deletedAt}"></td>
+            </tr>
+        </table>
+        <a href="#" class="btn btn-primary">Back to Roles</a>
+    </div>
+</main>
+
+</body>
+</html>

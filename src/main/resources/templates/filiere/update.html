@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Update Filière</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+    <div class="container card m-2 rounded-3 border-2 shadow-sm  p-3">
+        <h2 class="card-title text-center">Update Filière</h2>
+        <form th:action="@{/filieres/update}" th:object="${filiere}" method="post" class="card-body mt-3">
+            <div class="form-group">
+                <label for="titreFiliere">Titre Filière:</label>
+                <input type="text" class="form-control" id="titreFiliere" th:field="*{titreFiliere}" required/>
+                <span th:if="${#fields.hasErrors('titreFiliere')}" th:errors="*{titreFiliere}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="codeFiliere">Code Filière:</label>
+                <input type="text" class="form-control" id="codeFiliere" th:field="*{codeFiliere}" required/>
+                <span th:if="${#fields.hasErrors('codeFiliere')}" th:errors="*{codeFiliere}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="anneeAccreditation">Année d'Accréditation:</label>
+                <input type="number" class="form-control" id="anneeAccreditation" th:field="*{anneeaccreditation}" required/>
+                <span th:if="${#fields.hasErrors('anneeaccreditation')}" th:errors="*{anneeaccreditation}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="anneeFinAccreditation">Année de Fin d'Accréditation:</label>
+                <input type="number" class="form-control" id="anneeFinAccreditation" th:field="*{anneeFinaccreditation}" required/>
+                <span th:if="${#fields.hasErrors('anneeFinaccreditation')}" th:errors="*{anneeFinaccreditation}" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary rounded-5 mt-3"><i class="fas fa-check"></i> Update</button>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>

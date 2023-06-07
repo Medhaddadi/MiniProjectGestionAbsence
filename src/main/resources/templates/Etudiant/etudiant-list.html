@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Etudiant Management</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">Etudiant Management</h1>
+            </div>
+            <div class="card-body">
+                <th:block th:if="${message}">
+                    <div class="alert alert-success" role="alert">
+                        <strong th:text="${message}"></strong>
+                    </div>
+                </th:block>
+                <!-- if etudiants null -->
+                <th:block th:if="${#lists.isEmpty(etudiants)}">
+                    <div class="alert alert-info" role="alert">
+                        <strong>No etudiants found</strong>
+                    </div>
+                </th:block>
+
+                <!-- if etudiants not null -->
+                <th:block th:unless="${#lists.isEmpty(etudiants)}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a th:href="@{/etudiants/ajouter}" class="btn btn-primary float-right mb-3">
+                                <i class="fas fa-plus"></i> Ajouter un étudiant
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Search Bar - Recherche par CNE/Code Massar -->
+
+                    <form th:action="@{/etudiants/rechercher}" method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Rechercher par CNE/Code Massar"
+                                   aria-label="Rechercher par CNE/Code Massar" aria-describedby="button-addon2"
+                                   name="cne" th:value="${cne}">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Recherche phonétique par nom-->
+                    <form th:action="@{/etudiants/rechercher}" method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Rechercher par nom"
+                                   aria-label="Rechercher phonétique par nom" aria-describedby="button-addon2"
+                                   name="pnom" th:value="${pnom}">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <!--get all the student de la classe -->
+                    <form th:action="@{/etudiants/rechercher}" method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Rechercher par classe"
+                                   aria-label="Rechercher par classe" aria-describedby="button-addon2"
+                                   name="classe" th:value="${classe}">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    <!-- Recherche  nom-->
+                    <form th:action="@{/etudiants/rechercher}" method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Rechercher par nom"
+                                   aria-label="Rechercher par nom" aria-describedby="button-addon2"
+                                   name="keyword" th:value="${nom}">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">CNE</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Identifiant</th>
+
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="etudiant : ${etudiants}">
+                            <td th:text="${etudiant.cne}"></td>
+                            <td th:text="${etudiant.nom}"></td>
+                            <td th:text="${etudiant.prenom}"></td>
+                            <td th:text="${etudiant.identifiant}"></td>
+
+                            <td class="d-flex align-items-center justify-content-between">
+                                <a th:href="@{/etudiants/modifier/{id}(id=${etudiant.id})}"
+                                   class="btn btn-primary rounded-5">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a th:href="@{/etudiants/supprimer/{id}(id=${etudiant.id})}"
+                                   class="btn btn-danger rounded-5"
+                                   onclick="return confirmDelete();">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                                <a th:href="@{/etudiants/details/{id}(id=${etudiant.id})}"
+                                   class="btn btn-info rounded-5 text-white"
+                                >
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </th:block>
+                <a th:href="@{/etudiants/ajouter }"
+                   class="btn btn-success rounded-5">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this etudiant?');
+        }
+    </script>
+</main>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<main layout:fragment="content" id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Le Type de Compte </h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Administrateur </a></li>
+                <li class="breadcrumb-item">Compte</li>
+                <li class="breadcrumb-item active">Type</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section ">
+        <div class="row m-auto">
+            <div class="col-lg-6 ">
+                <div class="card m-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Type de compte </h5>
+                        <form action="#" th:action="@{/comptes/creerCompte}" th:object="${compte}" method="post">
+                            <div class="form-group">
+                                <label for="login">Login:</label>
+                                <input type="text" class="form-control" id="login" th:field="${login}">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" th:field="${password}">
+                                <!--                                add icon of eyes -->
+                                <i class="fa fa-eye" id="eye" aria-hidden="true"></i>
+                            </div>
+                            <div class="form-group">
+                                <label for="proprietaire">Proprietaire:</label>
+                                <input type="text" class="form-control" id="proprietaire" th:field="${proprietaire}">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Role:</label>
+                                <select class="form-control" id="role" th:field="${role}">
+                                    <th:block th:each="role : ${roles}">
+                                        <option th:text="${role.nom}" th:value="${role.id}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ajouter le Compte</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        //when the user clicks on the eye icon the password will be visible
+        var password = document.getElementById("password");
+        var eye = document.getElementById("eye");
+        eye.addEventListener("click", function () {
+            if (password.type === "password") {
+                password.type = "text";
+                eye.classList.add("fa-eye-slash");
+            } else {
+                password.type = "password";
+                eye.classList.remove("fa-eye-slash");
+            }
+        });
+    </script>
+</main>

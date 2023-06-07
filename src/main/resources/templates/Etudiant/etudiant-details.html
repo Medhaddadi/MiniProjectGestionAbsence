@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Etudiant Details</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+    <div class="container card m-2 rounded-3 border-2 shadow-sm p-3">
+        <h2 class="card-title text-center">Etudiant Details</h2>
+        <div class="card-body mt-3">
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" class="form-control" id="nom" th:value="${etudiant.nom}" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom:</label>
+                <input type="text" class="form-control" id="prenom" th:value="${etudiant.prenom}" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="identifiant">Identifiant Massar:</label>
+                <input type="text" class="form-control" id="identifiant" th:value="${etudiant.identifiant}" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="email">Adresse Email:</label>
+                <input type="text" class="form-control" id="email" th:value="${etudiant.email}" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Numéro de téléphone:</label>
+                <input type="text" class="form-control" id="telephone" th:value="${etudiant.telephone}" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="dateNaissance">Date de naissance:</label>
+                <input type="text" class="form-control" id="dateNaissance" th:value="${etudiant.dateNaissance}" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="nomArabe">Nom en Arabe:</label>
+                <input type="text" class="form-control" id="nomArabe" th:value="${etudiant.nomArabe}" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="prenomArabe">Prénom en Arabe:</label>
+                <input type="text" class="form-control" id="prenomArabe" th:value="${etudiant.prenomArabe}" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="text" class="form-control" id="photo" th:value="${etudiant.photo}" readonly/>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

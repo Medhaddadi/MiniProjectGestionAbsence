@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Show Filière</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+    <div class="container card m-2 rounded-3 border-2 shadow-sm  p-3">
+        <h2 class="card-title text-center">Filière Details</h2>
+        <div class="card-body mt-3">
+            <div class="form-group">
+                <label for="titreFiliere">Titre Filière:</label>
+                <span id="titreFiliere" th:text="${filiere.titreFiliere}"></span>
+            </div>
+            <div class="form-group">
+                <label for="codeFiliere">Code Filière:</label>
+                <span id="codeFiliere" th:text="${filiere.codeFiliere}"></span>
+            </div>
+            <div class="form-group">
+                <label for="anneeaccreditation">Année d'Accréditation:</label>
+                <span id="anneeaccreditation" th:text="${filiere.anneeaccreditation}"></span>
+            </div>
+            <div class="form-group">
+                <label for="anneeFinaccreditation">Année de Fin d'Accréditation:</label>
+                <span id="anneeFinaccreditation" th:text="${filiere.anneeFinaccreditation}"></span>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary rounded-5 mt-3" ><i class="fas fa-user"></i> Show Coordinateur</button>
+                <button type="button" class="btn btn-primary rounded-5 mt-3" ><i class="fas fa-graduation-cap"></i> Show Niveaux</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Niveau List</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+    <div class="container">
+        <h2>Niveau List</h2>
+        <!--display messages-->
+        <div th:if="${message}">
+            <div class="alert alert-success" th:text="${message}"></div>
+        </div>
+        <a th:href="@{/niveaux/create}" class="btn btn-primary">Create Niveau</a>
+        <!--if niveaux is null-->
+        <th:block th:if="${#lists.isEmpty(niveaux)}">
+            <div class="alert alert-info">No Niveau Found.</div>
+        </th:block>
+        <!--if niveaux is not null-->
+        <th:block th:unless="${#lists.isEmpty(niveaux)}">
+            <div class="alert alert-info" th:text="${niveaux.size() + ' Niveau(s) Found.'}"></div>
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Alias</th>
+                <th>Titre</th>
+                <th>Voir</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="niveau : ${niveaux}">
+                <td th:text="${niveau.alias}"></td>
+                <td th:text="${niveau.titre}"></td>
+                <td>
+                    <a th:href="@{/niveaux/{id}/models(id=${niveau.idNiveau})}" class="btn btn-primary">View Models</a>
+                    <a th:href="@{/niveaux/{id}/filieres(id=${niveau.idNiveau})}" class="btn btn-primary">View Filieres</a>
+                    <a th:href="@{/niveaux/{id}/inscriptions(id=${niveau.idNiveau})}" class="btn btn-primary">View Inscriptions</a>
+                </td>
+                <td>
+                    <a th:href="@{/niveaux/{id}/edit(id=${niveau.idNiveau})}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                    <a th:href="@{/niveaux/{id}/delete(id=${niveau.idNiveau})}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <a th:href="@{/niveaux/{id}/show(id=${niveau.idNiveau})}" class="btn btn-primary"><i class="fas fa-eye"></i> Show</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </th:block>
+    </div>
+</main>
+
+</body>
+</html>

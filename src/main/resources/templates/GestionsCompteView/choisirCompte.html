@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<main layout:fragment="content" id="main" class="main">
+
+    <div class="container">
+        <h1>Choose Account</h1>
+        <form th:action="@{/comptes/search}" method="post">
+            <div class="form-group">
+                <label for="search">Search:</label>
+                <input type="text" class="form-control" id="search" placeholder="Search..." name="search">
+                <select class="form-control" name="userType" id="userType">
+                    <option value="Etudiant">Etudiant</option>
+                    <option value="Enseignant">Enseignant</option>
+                    <option value="autre">Autre</option>
+                </select>
+                <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </form>
+
+        <table class="table table-striped" id="myTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Identifiant</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>NomArabe</th>
+                <th>PrenomArabe</th>
+                <th>Photo</th>
+                <!--test if the userType in the model is Etuidnat -->
+                <th th:if="${userType} == 'Etudiant'"> CNE</th>
+                <th th:if="${userType} == 'Etudiant'"> Date Naissance</th>
+                <!-- test if the userType in the model is Enseignant -->
+                <th th:if="${userType} == 'Enseignant'"> Specialite</th>
+                <th th:if="${userType} == 'Enseignant'"> Grade</th>
+                <th>Select</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="account : ${utilisateurs}">
+                <td th:text="${account.id}"></td>
+                <td th:text="${account.nom}"></td>
+                <td th:text="${account.prenom}"></td>
+                <td th:text="${account.identifiant}"></td>
+                <td th:text="${account.email}"></td>
+                <td th:text="${account.telephone}"></td>
+                <td th:text="${account.nomArabe}"></td>
+                <td th:text="${account.prenomArabe}"></td>
+                <td th:text="${account.photo}"></td>
+                <!--test if the userType in the model is Etuidnat -->
+                <td th:if="${userType} == 'Etudiant'" th:text="${account.cne}"></td>
+                <td th:if="${userType} == 'Etudiant'" th:text="${account.dateNaissance}"></td>
+                <td th:if="${userType} == 'Enseignant'" th:text="${account.specialite}"></td>
+                <td>
+                    <form th:action="@{/comptes/choisirCompte}" method="post">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="userid" th:value="${account.id}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Suivantt</button>
+
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+    </script>
+</main>

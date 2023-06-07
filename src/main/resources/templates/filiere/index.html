@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+  <meta charset="UTF-8"/>
+  <title>Liste des Filières</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+  <div class="container card m-2 rounded-3 border-2 shadow-sm  p-3">
+    <h2 class="card-title text-center">Liste des Filières</h2>
+    <th:block th:if="${message}">
+      <div class="alert alert-success" role="alert">
+        <span th:text="${message}"></span>
+      </div>
+    </th:block>
+    <div class="d-flex justify-content-end">
+      <a th:href="@{/filieres/create}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Ajouter</a>
+    </div>
+    <th:block th:if="${#lists.isEmpty(filieres)}">
+      <div class="alert alert-info" role="alert">
+        <span>Il n'y a pas de filières</span>
+      </div>
+    </th:block>
+    <th:block th:if="${#lists.isEmpty(filieres)==false}">
+      <!--Todo: searsh bar form get a query -->
+      <form class="form-inline my-2 my-lg-0" th:action="@{/filieres/search}" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    <table class="table table-bordered mt-3">
+      <thead>
+      <tr>
+        <th>Titre Filière</th>
+        <th>Code Filière</th>
+        <th>Voir </th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+
+
+      <tr th:each="filiere : ${filieres}">
+        <td th:text="${filiere.titreFiliere}"></td>
+        <td th:text="${filiere.codeFiliere}"></td>
+        <td>
+          <a th:href="@{/filieres/niveaux/{idFiliere}(idFiliere=${filiere.idFiliere})}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Voir Niveaux</a>
+          <a th:href="@{/filieres/coordinateur/{idFiliere}(idFiliere=${filiere.idFiliere})}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Voir Coordinateur</a>
+        </td>
+        <td>
+          <a th:href="@{/filieres/update/{idFiliere}(idFiliere=${filiere.idFiliere})}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Modifier</a>
+          <a th:href="@{/filieres/delete/{idFiliere}(idFiliere=${filiere.idFiliere})}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Supprimer</a>
+        <a th:href="@{/filieres/show/{idFiliere}(idFiliere=${filiere.idFiliere})}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Voir</a>
+      </tr>
+      </tbody>
+    </table>
+    </th:block>
+  </div>
+</main>
+
+</body>
+</html>

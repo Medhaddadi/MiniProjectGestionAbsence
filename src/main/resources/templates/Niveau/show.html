@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Show Niveau</title>
+</head>
+
+<body>
+
+<main layout:fragment="content" id="main" class="main">
+    <div class="container">
+        <h2>Show Niveau</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Alias:</th>
+                <td th:text="${niveau.alias}"></td>
+            </tr>
+            <tr>
+                <th>Titre:</th>
+                <td th:text="${niveau.titre}"></td>
+            </tr>
+            <tr>
+                <th>Filiere:</th>
+                <td th:text="${niveau.filiere.titreFiliere}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/niveaux}" class="btn btn-primary">Back to Niveau List</a>
+    </div>
+</main>
+
+</body>
+</html>
